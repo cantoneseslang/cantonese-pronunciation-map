@@ -28,13 +28,12 @@ const PronunciationGrid: React.FC<PronunciationGridProps> = ({ data }) => {
   const finals = getUniqueFinals(data)
   const initials = getUniqueInitials(data)
 
-  // 表示する行数を制限（タブで切り替え）
-  const rowsPerTab = 10
-  const totalTabs = Math.ceil(finals.length / rowsPerTab)
-
-  const startRow = activeTab * rowsPerTab
-  const endRow = Math.min(startRow + rowsPerTab, finals.length)
-  const currentFinals = finals.slice(startRow, endRow)
+  // Removed row limit per tab to display all finals
+  // const rowsPerTab = 10
+  // const totalTabs = Math.ceil(finals.length / rowsPerTab)
+  // const startRow = activeTab * rowsPerTab
+  // const endRow = Math.min(startRow + rowsPerTab, finals.length)
+  // const currentFinals = finals.slice(startRow, endRow)
 
   // 発音データをマップ形式に変換
   const pronunciationMap = createPronunciationMap(data)
@@ -289,7 +288,7 @@ const PronunciationGrid: React.FC<PronunciationGridProps> = ({ data }) => {
             </tr>
           </thead>
           <tbody>
-            {currentFinals.map((final) => (
+            {finals.map((final) => ( // Use the full 'finals' array instead of 'currentFinals'
               <tr key={final}>
                 <th>{final}</th>
                 {["b", "p", "m", "f", "d", "t", "n", "l", "g", "gw", "k", "kw", "ng", "h", "z", "c", "s", "j", "w", ""].map((initial) => {
