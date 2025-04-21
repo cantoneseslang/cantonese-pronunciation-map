@@ -412,6 +412,13 @@ const ToneIndicator = styled.span<{ tone: string }>`
   font-size: 0.8em;
   margin-left: 0.4em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    width: 1.2em;
+    height: 1.2em;
+    font-size: 0.7em;
+    margin-left: 0.3em;
+  }
 `
 
 const EmptyDataMessage = styled.div`
@@ -441,6 +448,10 @@ const Table = styled.table`
   border-radius: 12px;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    /* Add mobile-specific table styles if needed, e.g., smaller overall width */
+  }
+
   .header-row {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
@@ -452,6 +463,11 @@ const Table = styled.table`
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 1.1em;
+
+    @media (max-width: 768px) {
+      padding: 6px; /* Reduced padding */
+      font-size: 0.8em; /* Reduced font size */
+    }
   }
 
   .border-right {
@@ -462,6 +478,9 @@ const Table = styled.table`
     background-color: rgba(0, 0, 0, 0.4);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    @media (max-width: 768px) {
+      /* Adjust corner cell if needed */
+    }
   }
 
   .consonant-row {
@@ -476,6 +495,11 @@ const Table = styled.table`
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 768px) {
+      padding: 6px; /* Reduced padding */
+      font-size: 1em; /* Reduced font size */
+    }
   }
 
   tbody th {
@@ -485,11 +509,19 @@ const Table = styled.table`
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 1.2em;
+
+    @media (max-width: 768px) {
+      padding: 6px; /* Reduced padding */
+      font-size: 0.9em; /* Reduced font size */
+    }
   }
 
   td {
     padding: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    @media (max-width: 768px) {
+      padding: 4px; /* Reduced padding */
+    }
   }
 `
 
@@ -511,6 +543,10 @@ const CardButton = styled.button<{ $groupColor: string }>`
   cursor: pointer;
   transition: all 0.2s ease;
 
+  @media (max-width: 768px) {
+    min-height: 80px; /* Reduced min-height */
+  }
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
@@ -529,11 +565,20 @@ const CardContent = styled.div`
   height: 100%;
   position: relative;
 
+  @media (max-width: 768px) {
+    padding: 5px; /* Reduced padding */
+  }
+
   .kanji {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 4px;
     color: #333;
+
+    @media (max-width: 768px) {
+      font-size: 1.5em; /* Reduced font size */
+      margin-bottom: 2px;
+    }
   }
 
   .jyutping {
@@ -543,11 +588,19 @@ const CardContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+      font-size: 0.9em; /* Reduced font size */
+    }
   }
 
   .katakana {
     font-size: 1.3em;
     color: #666;
+
+    @media (max-width: 768px) {
+      font-size: 0.8em; /* Reduced font size */
+    }
   }
 
   .play-icon {
@@ -556,6 +609,14 @@ const CardContent = styled.div`
     right: 5px;
     opacity: 0.6;
     transition: opacity 0.2s ease;
+    @media (max-width: 768px) {
+      bottom: 2px;
+      right: 2px;
+      svg {
+        width: 12px; /* Reduced icon size */
+        height: 12px;
+      }
+    }
   }
 
   &:hover .play-icon {
@@ -577,6 +638,11 @@ const CardButtonIMG = styled.div<{ $groupColor: string }>`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 
+  @media (max-width: 768px) {
+    padding: 8px; /* Reduced padding */
+    border-radius: 6px;
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -593,6 +659,12 @@ const CardButtonIMGArrow = styled.div`
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
+  @media (max-width: 768px) {
+    top: 5px; /* Adjust arrow position */
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+  }
 `
 
 const CardButtonIMGButton = styled.div`
@@ -610,15 +682,25 @@ const CardButtonTitle = styled.div`
   text-align: center;
   margin-top: 10px;
 
+  @media (max-width: 768px) {
+    margin-top: 5px; /* Reduced margin */
+  }
+
   p {
     margin: 0;
     font-size: 1.2em;
     font-weight: bold;
+    @media (max-width: 768px) {
+      font-size: 0.9em; /* Reduced font size */
+    }
   }
 
   span {
     font-size: 0.8em;
     font-weight: normal;
+    @media (max-width: 768px) {
+      font-size: 0.7em; /* Reduced font size */
+    }
   }
 `
 
