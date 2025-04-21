@@ -292,7 +292,7 @@ const PronunciationGrid: React.FC<PronunciationGridProps> = ({ data }) => {
             {currentFinals.map((final) => (
               <tr key={final}>
                 <th>{final}</th>
-                {["b", "p", "m", "f"].map((initial) => {
+                {["b", "p", "m", "f", "d", "t", "n", "l", "g", "gw", "k", "kw", "ng", "h", "z", "c", "s", "j", "w", ""].map((initial) => {
                   const item = getCellData(final, initial)
                   const cellId = `${final}-${initial}`
                   const isActive = activeCell === cellId
