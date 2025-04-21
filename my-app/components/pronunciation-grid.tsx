@@ -6,7 +6,7 @@ import styled from "styled-components"
 import type { CantoneseDataItem } from "@/types/cantonese"
 import { Volume2 } from "lucide-react"
 import { getUniqueInitials, getUniqueFinals, createPronunciationMap, extractTone } from "@/utils/pronunciation-utils"
-import { consonantGroups } from "@/data/pronunciationTable"
+import { consonantGroups, pronunciationTable } from "@/data/pronunciationTable"
 
 interface PronunciationGridProps {
   data: CantoneseDataItem[]
@@ -25,7 +25,7 @@ const PronunciationGrid: React.FC<PronunciationGridProps> = ({ data }) => {
   }
 
   // 母音と子音のリストを抽出
-  const finals = getUniqueFinals(data)
+  const finals = pronunciationTable.finals
   const initials = getUniqueInitials(data)
 
   // Removed row limit per tab to display all finals
