@@ -4,8 +4,8 @@ import type { CantoneseDataItem } from "@/types/cantonese"
 export function extractInitial(jyutping: string): string {
   if (!jyutping) return ""
 
-  // 子音のリスト（画像に基づいて更新）
-  const initials = ["b", "p", "m", "f", "d", "t", "n", "l", "g", "gw", "k", "kw", "ng", "h", "z", "c", "s", "j", "w"]
+  // 子音のリスト（長いものから順に）
+  const initials = ["gw", "kw", "ng", "b", "p", "m", "f", "d", "t", "n", "l", "g", "k", "h", "z", "c", "s", "j", "w"]
 
   // 声調を除去
   const withoutTone = jyutping.replace(/[1-6]$/, "")
