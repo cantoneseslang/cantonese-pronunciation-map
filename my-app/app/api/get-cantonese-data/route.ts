@@ -13,9 +13,9 @@ export async function GET() {
         if (info) {
           data.push({
             id: info.jyutping,
-            kanji: info.kanji,
+            kanji: info.kanji ?? '', // Use empty string if kanji is undefined
             jyutping: info.jyutping,
-            katakana: info.katakana,
+            katakana: info.katakana ?? '', // Use empty string if katakana is undefined
             audioPath: `/audio/${info.jyutping}.mp3`,
           })
         }

@@ -25,12 +25,20 @@ const consonantColors = {
 const rawData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/cantoneseData.json'), 'utf8'));
 
 // cells オブジェクトを作成
-const cells = {};
+const cells: { [final: string]: { [initial: string]: { jyutping: string; kanji: string; katakana: string; color: string } } } = {};
+
+// Define type for the items in rawData
+interface RawDataItem {
+  jyutping: string;
+  kanji: string;
+  katakana: string;
+  // Add other properties if they exist in cantoneseData.json
+}
 
 // データを変換
-rawData.forEach(item => {
+(rawData as RawDataItem[]).forEach(item => { // Add type assertion and annotation
   const { jyutping, kanji, katakana } = item;
-  
+
   // 子音と母音を分離
   let initial = '';
   let final = jyutping;
@@ -51,12 +59,30 @@ rawData.forEach(item => {
   }
   
   if (initial) {
+    // Ensure final exists before assigning to its property
+    if (!cells[final]) {
+        cells[final] = {};
+    }
+    // Ensure initial exists within final before assigning
     cells[final][initial] = {
       jyutping,
       kanji,
       katakana,
-      color: consonantColors[initial] || "#2f9e9a"
+      // Safely access consonantColors with initial as key
+      color: (consonantColors as { [key: string]: string })[initial] || "#2f9e9a"
     };
+  } else {
+      // Handle case where there is no initial consonant (e.g., starts with vowel)
+      if (!cells[final]) {
+          cells[final] = {};
+      }
+      // Use a placeholder like '子音なし' or handle appropriately
+      cells[final]['子音なし'] = { // Assuming '子音なし' is the convention
+          jyutping,
+          kanji,
+          katakana,
+          color: "#2f9e9a" // Default color or specific color for no initial
+      };
   }
 });
 
@@ -66,4 +92,4 @@ export const cells = ${JSON.stringify(cells, null, 2)};`;
 
 fs.writeFileSync(path.join(__dirname, '../data/generatedCells.ts'), output);
 
-console.log('変換が完了しました。'); 
+console.log('変換が完了しました。');

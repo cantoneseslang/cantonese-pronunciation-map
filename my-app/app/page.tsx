@@ -177,14 +177,26 @@ export default function Home() {
           console.log("フォールバックデータを使用します")
           setCantoneseData(fallbackData)
           setFilteredData(fallbackData)
-          setError(`データの読み込みに失敗したため、基本データのみを表示しています。エラー: ${apiError.message}`)
+          let apiErrorMessage = "不明なエラーが発生しました";
+          if (apiError instanceof Error) {
+            apiErrorMessage = apiError.message;
+          } else if (typeof apiError === 'string') {
+            apiErrorMessage = apiError;
+          }
+          setError(`データの読み込みに失敗したため、基本データのみを表示しています。エラー: ${apiErrorMessage}`)
         }
       } catch (err) {
         console.error("データの初期化に失敗しました:", err)
         // エラーが発生した場合はフォールバックデータを使用
         setCantoneseData(fallbackData)
         setFilteredData(fallbackData)
-        setError(`データの初期化に失敗したため、基本データのみを表示しています。エラー: ${err.message}`)
+        let initErrorMessage = "不明なエラーが発生しました";
+        if (err instanceof Error) {
+          initErrorMessage = err.message;
+        } else if (typeof err === 'string') {
+          initErrorMessage = err;
+        }
+        setError(`データの初期化に失敗したため、基本データのみを表示しています。エラー: ${initErrorMessage}`)
       } finally {
         setLoading(false)
       }

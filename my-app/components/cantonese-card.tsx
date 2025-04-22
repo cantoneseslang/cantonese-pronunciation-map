@@ -7,7 +7,9 @@ import styled from "styled-components"
 import ToneIndicator from "./tone-indicator"
 import { Volume2 } from "lucide-react"
 import PronunciationTableInfo from "./pronunciation-table-info"
-import { getPronunciationInfo } from "@/data/pronunciationTable"
+// Import pronunciationTable instead of the non-existent getPronunciationInfo
+import { pronunciationTable } from "@/data/pronunciationTable"
+import type { PronunciationTableCell } from "@/types/pronunciation-table"
 
 interface CantoneseCardProps {
   kanji: string
@@ -50,9 +52,49 @@ const CantoneseCard: React.FC<CantoneseCardProps> = ({ kanji, jyutping, katakana
   const tone = extractTone(jyutping)
   const jyutpingBase = getJyutpingWithoutTone(jyutping)
 
+  // Function to find pronunciation info from the table
+  const findPronunciationInfo = (baseJyutping: string): PronunciationTableCell | null => {
+    for (const final in pronunciationTable.cells) {
+      for (const initial in pronunciationTable.cells[final]) {
+        const cell = pronunciationTable.cells[final][initial]
+        // Check if cell exists and its jyutping matches the baseJyutping
+        if (cell && cell.jyutping === baseJyutping) {
+          return cell
+        }
+        // Also check jyutping without tone if the table stores it that way sometimes (though unlikely based on data)
+        if (cell && getJyutpingWithoutTone(cell.jyutping) === baseJyutping) {
+           return cell
+        }
+      }
+    }
+    // Check the special '子音なし' (no initial) case
+    for (const final in pronunciationTable.cells) {
+        const cell = pronunciationTable.cells[final]['子音なし'];
+        if (cell && cell.jyutping === baseJyutping) {
+          return cell
+        }
+        if (cell && getJyutpingWithoutTone(cell.jyutping) === baseJyutping) {
+           return cell
+        }
+    }
+    // Check the special '母音なし' (no vowel) case
+    const noVowelCells = pronunciationTable.cells['母音なし'];
+    if (noVowelCells) {
+        for (const initial in noVowelCells) {
+            const cell = noVowelCells[initial];
+            if (cell && cell.jyutping === baseJyutping) {
+                return cell;
+            }
+        }
+    }
+
+    return null // Return null if not found
+  }
+
   // 発音表の情報を取得
-  const pronunciationInfo = getPronunciationInfo(jyutpingBase)
-  const backgroundColor = pronunciationInfo.color || "#2f9e9a"
+  const pronunciationInfo = findPronunciationInfo(jyutpingBase)
+  // Use default color if info or color is not found
+  const backgroundColor = pronunciationInfo?.color || "#2f9e9a"
 
   // speakText関数を修正
   const speakText = () => {
