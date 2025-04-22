@@ -5,6 +5,7 @@ import QuizMode from "@/components/quiz-mode"
 import PronunciationGrid from "@/components/pronunciation-grid"
 import OpeningAnimation from "@/components/opening-animation"
 import AppMenu from "@/components/menu"
+import WelcomeGuide from "@/components/welcome-guide" // WelcomeGuide をインポート
 import styled from "styled-components"
 import type { CantoneseDataItem } from "@/types/cantonese"
 
@@ -262,6 +263,7 @@ export default function Home() {
 
   return (
     <MainContainer>
+      <WelcomeGuide /> {/* WelcomeGuide コンポーネントを追加 */}
       <AppMenu
         onSearch={handleSearch}
         onQuizMode={() => setShowQuiz(true)}

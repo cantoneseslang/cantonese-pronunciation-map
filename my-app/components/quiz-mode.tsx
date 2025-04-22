@@ -25,9 +25,9 @@ const QuizMode: React.FC<QuizModeProps> = ({ data, onClose }) => {
   // クイズを初期化
   useEffect(() => {
     if (data.length > 0) {
-      // 最低限必要なデータ数をチェック
-      if (data.length < 4) {
-        setError(`クイズモードには最低4つのデータが必要です。現在のデータ数: ${data.length}`)
+      // 最低限必要なデータ数をチェック (3つに変更)
+      if (data.length < 3) {
+        setError(`クイズモードには最低3つのデータが必要です。現在のデータ数: ${data.length}`)
         return
       }
       generateQuestion()
@@ -38,8 +38,9 @@ const QuizMode: React.FC<QuizModeProps> = ({ data, onClose }) => {
 
   // 新しい問題を生成
   const generateQuestion = () => {
-    if (data.length < 4) {
-      setError("最低4つのオプションが必要です")
+    // 最低オプション数を3に変更
+    if (data.length < 3) {
+      setError("最低3つのオプションが必要です")
       return
     }
 
@@ -47,13 +48,13 @@ const QuizMode: React.FC<QuizModeProps> = ({ data, onClose }) => {
     const randomIndex = Math.floor(Math.random() * data.length)
     const question = data[randomIndex]
 
-    // 3つの誤答を選択（正解を除く）
+    // 2つの誤答を選択（正解を除く）
     let wrongOptions = [...data]
     wrongOptions.splice(randomIndex, 1)
-    wrongOptions = shuffleArray(wrongOptions).slice(0, 3)
+    wrongOptions = shuffleArray(wrongOptions).slice(0, 2) // 3を2に変更
 
-    // 4つの選択肢をシャッフル
-    const allOptions = shuffleArray([...wrongOptions, question])
+    // 3つの選択肢をシャッフル
+    const allOptions = shuffleArray([...wrongOptions, question]) // 4を3に変更
 
     setCurrentQuestion(question)
     setOptions(allOptions)
