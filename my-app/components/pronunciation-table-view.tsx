@@ -9,25 +9,12 @@ const PronunciationTableView = () => {
   const [activeTab, setActiveTab] = useState<number>(0)
   const headers = getTableHeaders()
 
-  // 表示する行数を制限（タブで切り替え）
-  const rowsPerTab = 10
-  const totalTabs = Math.ceil(headers.finals.length / rowsPerTab)
-
-  const startRow = activeTab * rowsPerTab
-  const endRow = Math.min(startRow + rowsPerTab, headers.finals.length)
-  const currentFinals = headers.finals.slice(startRow, endRow)
+  // タブ関連のロジックを削除し、すべての韻母を表示
+  const currentFinals = headers.finals
 
   return (
     <TableContainer>
       <h2>広東語発音表</h2>
-
-      <TabContainer>
-        {Array.from({ length: totalTabs }).map((_, index) => (
-          <TabButton key={index} $active={activeTab === index} onClick={() => setActiveTab(index)}>
-            {index * rowsPerTab + 1}-{Math.min((index + 1) * rowsPerTab, headers.finals.length)}
-          </TabButton>
-        ))}
-      </TabContainer>
 
       <TableWrapper>
         <Table>
