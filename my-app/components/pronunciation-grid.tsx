@@ -306,28 +306,30 @@ const PronunciationGrid: React.FC<PronunciationGridProps> = ({ data }) => {
                             onClick={() => handleCardClick(item, cellId)}
                             $groupColor={getGroupColor(initial)}
                           >
-                            <CardButtonIMG $groupColor={getGroupColor(initial)}>
-                              <CardButtonIMGArrow />
-                              <CardButtonIMGButton />
-                              <CardContent>
-                                <div className="kanji">{item.kanji}</div>
-                                <div className="jyutping">
-                                  {item.jyutping?.replace(/[1-6]$/, "")}
-                                  {extractTone(item.jyutping || "") && (
-                                    <ToneIndicator tone={extractTone(item.jyutping || "")} />
-                                  )}
-                                </div>
-                                <div className="katakana">{item.katakana}</div>
-                                <div className="play-icon">
-                                  <Volume2 size={16} />
-                                </div>
-                              </CardContent>
-                            </CardButtonIMG>
-                            <CardButtonTitle>
-                              <p>
-                                {item.kanji} <span>{item.jyutping}</span>
-                              </p>
-                            </CardButtonTitle>
+                            <div className="card-content-wrapper">
+                              <CardButtonIMG $groupColor={getGroupColor(initial)}>
+                                <CardButtonIMGArrow />
+                                <CardButtonIMGButton />
+                                <CardContent>
+                                  <div className="kanji">{item.kanji}</div>
+                                  <div className="jyutping">
+                                    {item.jyutping?.replace(/[1-6]$/, "")}
+                                    {extractTone(item.jyutping || "") && (
+                                      <ToneIndicator tone={extractTone(item.jyutping || "")} />
+                                    )}
+                                  </div>
+                                  <div className="katakana">{item.katakana}</div>
+                                  <div className="play-icon">
+                                    <Volume2 size={16} />
+                                  </div>
+                                </CardContent>
+                              </CardButtonIMG>
+                              <CardButtonTitle>
+                                <p>
+                                  {item.kanji} <span>{item.jyutping}</span>
+                                </p>
+                              </CardButtonTitle>
+                            </div>
                           </CardButton>
                         </CardWrapper>
                       )}
@@ -551,6 +553,15 @@ const CardButton = styled.button<{ $groupColor?: string }>`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
 
+  .card-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   @media (max-width: 768px) {
     min-width: 120px;
     min-height: 120px;
@@ -572,38 +583,50 @@ const CardContent = styled.div`
   width: 100%;
   text-align: center;
 
-  h2 {
+  .kanji {
     font-size: 2.5rem;
     margin: 0;
+    color: #333333;
     @media (max-width: 768px) {
       font-size: 1.6rem;
     }
   }
 
-  p.jyutping {
+  .jyutping {
     font-size: 1.5rem;
     margin: 0.5rem 0;
+    color: #333333;
     @media (max-width: 768px) {
       font-size: 1rem;
       margin: 0.2rem 0;
     }
   }
 
-  p.katakana {
+  .katakana {
     font-size: 1.2rem;
     margin: 0;
+    color: #333333;
     @media (max-width: 768px) {
       font-size: 0.9rem;
     }
   }
+
+  .play-icon {
+    color: #333333;
+  }
 `
 
-const CardButtonIMG = styled(CardButton)<{ $groupColor: string }>`
+const CardButtonIMG = styled.div<{ $groupColor: string }>`
   min-width: 200px;
   background-color: ${props => props.$groupColor};
   box-shadow: none;
   margin: 0;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     min-width: 120px;
