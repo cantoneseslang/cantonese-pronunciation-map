@@ -534,11 +534,11 @@ const CardWrapper = styled.div`
   padding: 0;
 `
 
-const CardButton = styled.button`
+const CardButton = styled.button<{ $groupColor?: string }>`
   min-width: 200px;
   min-height: 180px;
   padding: 1rem;
-  background-color: #f5f5f5;
+  background-color: ${props => props.$groupColor || '#f5f5f5'};
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -631,9 +631,9 @@ const CardContent = styled.div`
   }
 `
 
-const CardButtonIMG = styled(CardButton)`
+const CardButtonIMG = styled(CardButton)<{ $groupColor: string }>`
   min-width: 200px;
-  background-color: transparent;
+  background-color: ${props => props.$groupColor};
   box-shadow: none;
   margin: 0;
   padding: 0.5rem;
@@ -650,12 +650,12 @@ const CardButtonIMGArrow = styled.div`
   left: 50%;
   transform: translateX(-50%);
   @media (max-width: 768px) {
-    top: 5px; /* Adjust arrow position */
+    top: 5px;
     border-left-width: 4px;
     border-right-width: 4px;
     border-bottom-width: 4px;
   }
-`
+`;
 
 const CardButtonIMGButton = styled.div`
   width: 100%;
@@ -665,7 +665,7 @@ const CardButtonIMGButton = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-`
+`;
 
 const CardButtonTitle = styled.div`
   width: 100%;
@@ -673,7 +673,7 @@ const CardButtonTitle = styled.div`
   margin-top: 10px;
 
   @media (max-width: 768px) {
-    margin-top: 5px; /* Reduced margin */
+    margin-top: 5px;
   }
 
   p {
@@ -681,7 +681,7 @@ const CardButtonTitle = styled.div`
     font-size: 1.2em;
     font-weight: bold;
     @media (max-width: 768px) {
-      font-size: 0.9em; /* Reduced font size */
+      font-size: 0.9em;
     }
   }
 
@@ -689,9 +689,9 @@ const CardButtonTitle = styled.div`
     font-size: 0.8em;
     font-weight: normal;
     @media (max-width: 768px) {
-      font-size: 0.7em; /* Reduced font size */
+      font-size: 0.7em;
     }
   }
-`
+`;
 
-export default PronunciationGrid
+export default PronunciationGrid;
