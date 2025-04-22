@@ -5,6 +5,10 @@ import styled from "styled-components"
 import { X } from "lucide-react"
 import { pronunciationTable } from "@/data/pronunciationTable" // pronunciationTable をインポート
 
+interface WelcomeGuideProps {
+  onClose: () => void; // onClose プロパティを追加
+}
+
 interface GuideSection {
   title: string
   // content が関数である可能性も考慮
@@ -90,15 +94,21 @@ const guideSections: GuideSection[] = [
   {
     title: "最後に",
     content: (
-      <p>繰り返し聞いて、声に出して真似することで、少しずつ広東語の音に慣れていきましょう！</p>
+      <>
+        <p>さあ、準備はいいですか？</p>
+        <p>このマップにある音を全部マスターすれば、広東語の発音は完全にあなたのもの！</p>
+        <p>繰り返し聞いて、どんどん声に出して真似してみてください。</p>
+        <p><strong>一気に全ての音を制覇して、あなたも今日から広東語マスター！ 加油（ガーヤウ）！💪</strong></p>
+      </>
     ),
   },
 ]
 
 const LOCAL_STORAGE_KEY = "cantonesePronunciationMap_hideWelcomeGuide"
 
-const WelcomeGuide: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false)
+const WelcomeGuide: React.FC<WelcomeGuideProps> = ({ onClose }) => { // onClose を props から受け取る
+  // isVisible state は不要になる (親コンポーネントで管理するため)
+  // const [isVisible, setIsVisible] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
   const [dontShowAgain, setDontShowAgain] = useState(false)
 
@@ -117,12 +127,13 @@ const WelcomeGuide: React.FC = () => {
   }, []);
 
 
-  useEffect(() => {
-    const hideGuide = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (hideGuide !== "true") {
-      setIsVisible(true)
-    }
-  }, [])
+  // isVisible state がなくなったため、この useEffect は不要
+  // useEffect(() => {
+  //   const hideGuide = localStorage.getItem(LOCAL_STORAGE_KEY)
+  //   if (hideGuide !== "true") {
+  //     setIsVisible(true)
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (dontShowAgain) {
@@ -146,17 +157,19 @@ const WelcomeGuide: React.FC = () => {
     }
   }
 
+  // handleClose は props の onClose を呼び出すように変更
   const handleClose = () => {
-    setIsVisible(false)
+    onClose(); // 親コンポーネントに通知
   }
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDontShowAgain(e.target.checked)
   }
 
-  if (!isVisible) {
-    return null
-  }
+  // isVisible state がなくなったため、このチェックは不要
+  // if (!isVisible) {
+  //   return null
+  // }
 
   const currentSection = guideSections[currentPage]
 
@@ -220,6 +233,12 @@ const GuideContainer = styled.div`
   max-width: 800px;
   width: 90%;
   max-height: 80vh;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1.5rem; /* パディングを縮小 */
+    width: 95%;
+    max-height: 85vh;
+  }
   display: flex;
   flex-direction: column;
   position: relative;
@@ -232,6 +251,12 @@ const GuideContainer = styled.div`
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem; /* フォントサイズを縮小 */
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+    }
   }
 `
 
@@ -239,6 +264,12 @@ const MainTitle = styled.h1`
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem; /* フォントサイズを少し縮小 */
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+  }
   margin-bottom: 1.5rem;
   color: rgba(255, 255, 255, 0.9);
   padding-bottom: 1rem;
@@ -313,6 +344,12 @@ const Footer = styled.div`
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse; /* 縦並び（ボタンが下）に変更 */
+    gap: 1rem; /* 要素間のスペース */
+    align-items: stretch; /* 幅を親要素に合わせる */
+  }
 `
 
 const CheckboxContainer = styled.div`
@@ -335,6 +372,10 @@ const CheckboxContainer = styled.div`
 const NavigationButtons = styled.div`
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    justify-content: center; /* ボタンを中央揃え */
+  }
 `
 
 const NavButton = styled.button`

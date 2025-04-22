@@ -4,17 +4,19 @@ import type React from "react"
 
 import { useState } from "react"
 import styled from "styled-components"
-import { Menu, Search, X, BookOpen, RefreshCw } from "lucide-react"
+// HelpCircle アイコンをインポート
+import { Menu, Search, X, BookOpen, RefreshCw, HelpCircle } from "lucide-react"
 import SearchBar from "./search-bar"
 
 interface MenuProps {
   onSearch: (query: string) => void
   onQuizMode: () => void
+  onShowGuide: () => void // ガイド表示用コールバックを追加
   searchQuery: string
   isFiltered: boolean
 }
 
-const AppMenu: React.FC<MenuProps> = ({ onSearch, onQuizMode, searchQuery, isFiltered }) => {
+const AppMenu: React.FC<MenuProps> = ({ onSearch, onQuizMode, onShowGuide, searchQuery, isFiltered }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
 
@@ -34,6 +36,12 @@ const AppMenu: React.FC<MenuProps> = ({ onSearch, onQuizMode, searchQuery, isFil
 
   const handleQuizMode = () => {
     onQuizMode()
+    setIsOpen(false)
+  }
+
+  // ガイド表示処理
+  const handleShowGuide = () => {
+    onShowGuide()
     setIsOpen(false)
   }
 
@@ -75,6 +83,11 @@ const AppMenu: React.FC<MenuProps> = ({ onSearch, onQuizMode, searchQuery, isFil
           <MenuItem onClick={handleQuizMode}>
             <BookOpen size={20} />
             <span>クイズモード</span>
+          </MenuItem>
+          {/* ガイド再表示ボタンを追加 */}
+          <MenuItem onClick={handleShowGuide}>
+            <HelpCircle size={20} />
+            <span>ガイドを再表示</span>
           </MenuItem>
         </MenuPanel>
       )}

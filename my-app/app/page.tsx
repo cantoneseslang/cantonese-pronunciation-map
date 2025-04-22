@@ -134,11 +134,32 @@ export default function Home() {
   const [showQuiz, setShowQuiz] = useState(false)
   const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(false)
   const [showOpening, setShowOpening] = useState(true)
+  const [showWelcomeGuide, setShowWelcomeGuide] = useState(false) // ガイド表示状態
 
   // 検索結果があるかどうかを判定
   const isFiltered = searchQuery !== "" && filteredData.length > 0
 
+  // --- ハンドラ関数をコンポーネント内に移動 ---
+  // メニューからガイドを表示する関数
+  const handleShowGuideMenuClick = () => {
+    localStorage.removeItem(HIDE_GUIDE_KEY); // localStorage から非表示設定を削除
+    setShowWelcomeGuide(true); // ガイドを表示状態にする
+  };
+
+  // ガイドを閉じる関数
+  const handleCloseGuide = () => {
+    setShowWelcomeGuide(false); // ガイドを非表示状態にする
+  };
+  // --- ハンドラ関数ここまで ---
+
+  // localStorage キー
+  const HIDE_GUIDE_KEY = "cantonesePronunciationMap_hideWelcomeGuide";
+
   useEffect(() => {
+    // 初回マウント時に localStorage をチェックしてガイド表示を決定
+    const shouldHideGuide = localStorage.getItem(HIDE_GUIDE_KEY) === "true";
+    setShowWelcomeGuide(!shouldHideGuide);
+
     // データの初期化
     const initializeData = async () => {
       try {
@@ -263,13 +284,18 @@ export default function Home() {
 
   return (
     <MainContainer>
-      <WelcomeGuide /> {/* WelcomeGuide コンポーネントを追加 */}
+      {/* WelcomeGuide の表示を state で制御し、onClose を渡す */}
+      {showWelcomeGuide && <WelcomeGuide onClose={handleCloseGuide} />}
       <AppMenu
         onSearch={handleSearch}
         onQuizMode={() => setShowQuiz(true)}
         searchQuery={searchQuery}
         isFiltered={isFiltered}
+        onShowGuide={handleShowGuideMenuClick} // メニューにハンドラを渡す
       />
+
+      {/* 誤って追加された2つ目の WelcomeGuide を削除 */}
+      {/* {showWelcomeGuide && <WelcomeGuide onClose={handleCloseGuide} />} */}
 
       {error && <ErrorMessage>{error}</ErrorMessage>}
 
@@ -288,6 +314,12 @@ export default function Home() {
     </MainContainer>
   )
 }
+
+// --- コンポーネント外の不要な関数定義を削除 ---
+// function handleShowGuideMenuClick() { ... }
+// function handleCloseGuide() { ... }
+// --- 関数定義ここまで ---
+
 
 const MainContainer = styled.main`
   min-height: 100vh;
