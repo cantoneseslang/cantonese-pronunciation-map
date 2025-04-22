@@ -538,13 +538,15 @@ const CardButton = styled.button<{ $groupColor: string }>`
   width: 100%;
   height: 100%;
   min-height: 120px;
+  min-width: 160px;
   border: none;
   background: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
 
   @media (max-width: 768px) {
-    min-height: 80px; /* Reduced min-height */
+    min-height: 80px;
+    min-width: 120px;
   }
 
   &:hover {
@@ -563,10 +565,11 @@ const CardContent = styled.div`
   justify-content: center;
   padding: 10px;
   height: 100%;
+  width: 100%;
   position: relative;
 
   @media (max-width: 768px) {
-    padding: 5px; /* Reduced padding */
+    padding: 5px;
   }
 
   .kanji {
@@ -574,9 +577,11 @@ const CardContent = styled.div`
     font-weight: bold;
     margin-bottom: 4px;
     color: #333;
+    width: 100%;
+    text-align: center;
 
     @media (max-width: 768px) {
-      font-size: 1.5em; /* Reduced font size */
+      font-size: 1.5em;
       margin-bottom: 2px;
     }
   }
@@ -588,18 +593,21 @@ const CardContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 
     @media (max-width: 768px) {
-      font-size: 0.9em; /* Reduced font size */
+      font-size: 0.9em;
     }
   }
 
   .katakana {
     font-size: 1.3em;
     color: #666;
+    width: 100%;
+    text-align: center;
 
     @media (max-width: 768px) {
-      font-size: 0.8em; /* Reduced font size */
+      font-size: 0.8em;
     }
   }
 
