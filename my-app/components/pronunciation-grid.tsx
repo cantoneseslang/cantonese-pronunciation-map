@@ -534,27 +534,26 @@ const CardWrapper = styled.div`
   padding: 0;
 `
 
-const CardButton = styled.button<{ $groupColor: string }>`
-  width: 100%;
-  height: 100%;
-  min-height: 120px;
-  min-width: 160px;
+const CardButton = styled.button`
+  min-width: 200px;
+  min-height: 180px;
+  padding: 1rem;
+  background-color: #f5f5f5;
   border: none;
-  background: transparent;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
-
-  @media (max-width: 768px) {
-    min-height: 80px;
-    min-width: 120px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  &.active {
-    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 `
 
@@ -632,29 +631,12 @@ const CardContent = styled.div`
   }
 `
 
-const CardButtonIMG = styled.div<{ $groupColor: string }>`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  background-color: ${(props) => props.$groupColor};
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    padding: 8px; /* Reduced padding */
-    border-radius: 6px;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+const CardButtonIMG = styled(CardButton)`
+  min-width: 200px;
+  background-color: transparent;
+  box-shadow: none;
+  margin: 0;
+  padding: 0.5rem;
 `
 
 const CardButtonIMGArrow = styled.div`
