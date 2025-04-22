@@ -552,10 +552,10 @@ const CardButton = styled.button<{ $groupColor?: string }>`
   position: relative;
 
   @media (max-width: 768px) {
-    min-width: 140px;
-    min-height: 140px;
-    padding: 0.5rem;
-    margin: 0.25rem;
+    min-width: 120px;
+    min-height: 120px;
+    padding: 0.4rem;
+    margin: 0.2rem;
   }
 
   &:hover {
@@ -576,7 +576,7 @@ const CardContent = styled.div`
     font-size: 2.5rem;
     margin: 0;
     @media (max-width: 768px) {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
   }
 
@@ -584,8 +584,8 @@ const CardContent = styled.div`
     font-size: 1.5rem;
     margin: 0.5rem 0;
     @media (max-width: 768px) {
-      font-size: 1.2rem;
-      margin: 0.25rem 0;
+      font-size: 1rem;
+      margin: 0.2rem 0;
     }
   }
 
@@ -593,7 +593,7 @@ const CardContent = styled.div`
     font-size: 1.2rem;
     margin: 0;
     @media (max-width: 768px) {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   }
 `
@@ -606,8 +606,8 @@ const CardButtonIMG = styled(CardButton)<{ $groupColor: string }>`
   padding: 0.5rem;
 
   @media (max-width: 768px) {
-    min-width: 140px;
-    padding: 0.25rem;
+    min-width: 120px;
+    padding: 0.2rem;
   }
 `
 
@@ -675,8 +675,8 @@ const HeaderCell = styled.th`
   color: white;
 
   @media (max-width: 768px) {
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 0.4rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -687,8 +687,8 @@ const SideHeaderCell = styled(HeaderCell)`
   background-color: #34495e;
 
   @media (max-width: 768px) {
-    min-width: 30px;
-    font-size: 0.9rem;
+    min-width: 25px;
+    font-size: 0.8rem;
   }
 `;
 
