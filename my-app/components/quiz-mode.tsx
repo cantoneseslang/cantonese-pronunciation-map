@@ -74,7 +74,7 @@ const QuizMode: React.FC<QuizModeProps> = ({ data, onClose }) => {
   // ブラウザのText-to-Speech APIを使用して発音する
   const speakText = () => {
     if (currentQuestion && "speechSynthesis" in window) {
-      // 発音する
+      // 発音するテキストを漢字に戻す
       const utterance = new SpeechSynthesisUtterance(currentQuestion.kanji)
 
       // 広東語に設定（完全な広東語対応がない場合は中国語で代用）
