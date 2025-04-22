@@ -551,6 +551,13 @@ const CardButton = styled.button<{ $groupColor?: string }>`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
 
+  @media (max-width: 768px) {
+    min-width: 140px;
+    min-height: 140px;
+    padding: 0.5rem;
+    margin: 0.25rem;
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -562,72 +569,32 @@ const CardContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  height: 100%;
   width: 100%;
-  position: relative;
+  text-align: center;
 
-  @media (max-width: 768px) {
-    padding: 5px;
-  }
-
-  .kanji {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-bottom: 4px;
-    color: #333;
-    width: 100%;
-    text-align: center;
-
+  h2 {
+    font-size: 2.5rem;
+    margin: 0;
     @media (max-width: 768px) {
-      font-size: 1.5em;
-      margin-bottom: 2px;
+      font-size: 1.8rem;
     }
   }
 
-  .jyutping {
-    font-size: 1.4em;
-    margin-bottom: 2px;
-    color: #555;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
+  p.jyutping {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
     @media (max-width: 768px) {
-      font-size: 0.9em;
+      font-size: 1.2rem;
+      margin: 0.25rem 0;
     }
   }
 
-  .katakana {
-    font-size: 1.3em;
-    color: #666;
-    width: 100%;
-    text-align: center;
-
+  p.katakana {
+    font-size: 1.2rem;
+    margin: 0;
     @media (max-width: 768px) {
-      font-size: 0.8em;
+      font-size: 1rem;
     }
-  }
-
-  .play-icon {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    opacity: 0.6;
-    transition: opacity 0.2s ease;
-    @media (max-width: 768px) {
-      bottom: 2px;
-      right: 2px;
-      svg {
-        width: 12px; /* Reduced icon size */
-        height: 12px;
-      }
-    }
-  }
-
-  &:hover .play-icon {
-    opacity: 1;
   }
 `
 
@@ -637,6 +604,11 @@ const CardButtonIMG = styled(CardButton)<{ $groupColor: string }>`
   box-shadow: none;
   margin: 0;
   padding: 0.5rem;
+
+  @media (max-width: 768px) {
+    min-width: 140px;
+    padding: 0.25rem;
+  }
 `
 
 const CardButtonIMGArrow = styled.div`
@@ -691,6 +663,32 @@ const CardButtonTitle = styled.div`
     @media (max-width: 768px) {
       font-size: 0.7em;
     }
+  }
+`;
+
+const HeaderCell = styled.th`
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #2c3e50;
+  color: white;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+`;
+
+const SideHeaderCell = styled(HeaderCell)`
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  min-width: 50px;
+  background-color: #34495e;
+
+  @media (max-width: 768px) {
+    min-width: 30px;
+    font-size: 0.9rem;
   }
 `;
 
