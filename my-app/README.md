@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 広東語発音マップ (Cantonese Pronunciation Map)
 
-## Getting Started
+広東語の主要な発音（声母と韻母の組み合わせ）を視覚的に学び、音声を聞くことができるインタラクティブな学習アプリケーションです。
 
-First, run the development server:
+## 主な機能
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **発音グリッド:** 広東語の全ての発音（617音）を子音と母音の組み合わせで表示します。
+*   **音声再生:** 各発音カードをクリックすると、ネイティブスピーカーによる音声が再生されます。
+*   **詳細表示:** 漢字、発音記号（粤ピン）、カタカナ表記ガイドを表示します。
+*   **クイズモード:** ランダムに出題される発音を聞き取り、対応するカードを選択するクイズ機能。
+*   **検索機能:** 漢字、粤ピン、カタカナで発音を検索できます。
+*   **ウェルカムガイド:** アプリケーションの使い方や広東語の発音に関する基本的な知識を提供します。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 使い方
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  [デプロイされたアプリケーション](https://cantonese-pronunciation-hk9kp20hz-cantoneseslangs-projects.vercel.app) にアクセスします。
+2.  グリッド上のカードをクリックして、発音と詳細を確認します。
+3.  メニューの「クイズモード」で学習内容を確認します。
+4.  メニューの検索バーで特定の発音を探します。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 技術スタック
 
-## Learn More
+*   **フレームワーク:** Next.js
+*   **言語:** TypeScript
+*   **スタイリング:** Tailwind CSS, styled-components
+*   **UIコンポーネント:** shadcn/ui
+*   **デプロイ:** Vercel
 
-To learn more about Next.js, take a look at the following resources:
+## デプロイ先
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[https://cantonese-pronunciation-hk9kp20hz-cantoneseslangs-projects.vercel.app](https://cantonese-pronunciation-hk9kp20hz-cantoneseslangs-projects.vercel.app)
