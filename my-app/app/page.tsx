@@ -284,6 +284,7 @@ export default function Home() {
 
   return (
     <MainContainer>
+      <h1 className="sr-only">スラング式広東語カタカナ・粤拼発音マップ</h1>
       {/* WelcomeGuide の表示を state で制御し、onClose を渡す */}
       {showWelcomeGuide && <WelcomeGuide onClose={handleCloseGuide} />}
       <AppMenu
