@@ -1,11 +1,5 @@
 {
   "buildCommand": "npm run build",
   "installCommand": "npm install --legacy-peer-deps",
-  "framework": "nextjs",
-  "routes": [
-    {
-      "src": "/google0f632867d22bb952.html",
-      "dest": "/google0f632867d22bb952.html"
-    }
-  ]
+  "framework": "nextjs"
 } 
