@@ -10,7 +10,10 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "スラング式広東語カタカナ・粤拼発音マップ",
   description: "広東語学習者のための発音マップ",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  other: {
+    'google-site-verification': '5FMcHewuF65ACKFBJ9sIPTBOywpjHM8yF3sEtqIxEkA'
+  }
 }
 
 export default function RootLayout({
