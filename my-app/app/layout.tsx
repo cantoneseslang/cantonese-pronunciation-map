@@ -9,16 +9,16 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "スラング式広東語カタカナ・粤拼発音マップ | 広東語発音学習ツール",
-  description: "広東語の発音をカタカナと粤拼（イェールピン）で直感的に学べる発音マップ。スラングや日常会話で使える表現も収録。初心者から上級者まで、効率的に広東語の発音を習得できます。",
+  description: "広東語の発音をカタカナと粤拼（粤ピン）で直感的に学べる発音マップ。スラングや日常会話で使える表現も収録。初心者から上級者まで、効率的に広東語の発音を習得できます。",
   generator: 'v0.dev',
-  keywords: ["広東語", "発音", "カタカナ", "粤拼", "イェールピン", "香港", "スラング", "学習"],
+  keywords: ["広東語", "広東語発音", "広東語学習", "発音", "カタカナ", "粤拼", "粤ピン", "香港", "九龍城寨", "トワイライトウォーリアーズ", "スラング", "学習"],
   authors: [{ name: "cantoneseslang" }],
   verification: {
     google: '5FMcHewuF65ACKFBJ9sIPTBOywpjHM8yF3sEtqIxEkA'
   },
   openGraph: {
     title: "スラング式広東語カタカナ・粤拼発音マップ",
-    description: "広東語の発音をカタカナと粤拼で直感的に学べる発音マップ。スラングや日常会話表現も収録。",
+    description: "広東語の発音をカタカナと粤拼（粤ピン）で直感的に学べる発音マップ。スラングや日常会話表現も収録。",
     url: "https://cantonese-pronunciation-map.vercel.app",
     siteName: "スラング式広東語カタカナ・粤拼発音マップ",
     locale: "ja_JP",
